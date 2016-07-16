@@ -51,3 +51,5 @@ Temporary Items
 /packages
 /RestApi/bin
 /RestApi/obj/Debug
+/.vs/PatientsAndEpisodes/v14/.suo
+/RestApi/RestApi.csproj.user
