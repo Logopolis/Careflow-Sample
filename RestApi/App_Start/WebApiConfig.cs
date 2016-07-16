@@ -1,10 +1,13 @@
-﻿using System.Web.Http;
+﻿using Castle.Windsor;
+using RestApi.CastleWindsorConfig;
+using System.Web.Http;
+using System.Web.Http.Dispatcher;
 
 namespace RestApi
 {
     public static class WebApiConfig
     {
-        public static void Register(HttpConfiguration config)
+        public static void Register(HttpConfiguration config, IWindsorContainer container)
         {
             config.Routes.MapHttpRoute(
                 name: "Patients and episodes",
@@ -19,6 +22,9 @@ namespace RestApi
             // To disable tracing in your application, please comment out or remove the following line of code
             // For more information, refer to: http://www.asp.net/web-api
             config.EnableSystemDiagnosticsTracing();
+
+            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator),
+                new WindsorCompositionRoot(container));
         }
     }
 }
