@@ -169,7 +169,6 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientContext.cs" />
     <Compile Include="Models\PatientInitialiser.cs" />
-    <Compile Include="Models\Testing\TestDbContext.cs" />
     <Compile Include="Models\Testing\TestDbSet.cs" />
     <Compile Include="Models\Testing\TestPatientContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
