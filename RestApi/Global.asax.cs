@@ -23,13 +23,14 @@ namespace RestApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
 
-        public static void ConfigureWindsor(HttpConfiguration configuration)
+        public static IWindsorContainer ConfigureWindsor(HttpConfiguration configuration)
         {
             _container = new WindsorContainer();
             _container.Install(FromAssembly.This());
             _container.Kernel.Resolver.AddSubResolver(new CollectionResolver(_container.Kernel, true));
             var dependencyResolver = new CastleWindsorDependencyResolver(_container);
             configuration.DependencyResolver = dependencyResolver;
+            return _container;
         }
 
         protected void Application_End()

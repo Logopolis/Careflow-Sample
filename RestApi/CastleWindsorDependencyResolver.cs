@@ -85,7 +85,7 @@ namespace RestApi
         {
             container.Register(Classes.FromThisAssembly()
              .BasedOn<ApiController>()
-             .LifestylePerWebRequest());
+             .LifestyleTransient());
         }
     }
 }

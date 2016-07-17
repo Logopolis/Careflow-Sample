@@ -18,7 +18,8 @@ namespace RestApi.Test.Controllers
         public void SetUp()
         {
             _patientContext = new TestPatientContext();
-            _controller = new PatientsController(_patientContext);
+            
+            _controller = _GetController(_patientContext);
         }
 
         [Test]
@@ -79,6 +80,12 @@ namespace RestApi.Test.Controllers
                 _controller.Get(63));
 
             Assert.That(httpResponseException.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+        }
+
+        private PatientsController _GetController(IPatientContext patientContextToInject)
+        {
+            var container = WebApiApplication.ConfigureWindsor(GlobalConfiguration.Configuration);
+            return container.Resolve<PatientsController>(new { patientContext = patientContextToInject });
         }
     }
 }
