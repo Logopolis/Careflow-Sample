@@ -76,12 +76,32 @@ namespace RestApi.Test.Controllers
         [Test]
         public void ShouldThrow404WhenNoMatchingPatient()
         {
+            var patient = new Patient
+            {
+                DateOfBirth = new DateTime(2000, 12, 10),
+                FirstName = "Minnie",
+                LastName = "Mouse",
+                NhsNumber = "MM5678",
+                PatientId = 2
+            };
+            _patientContext.Patients.Add(patient);
+
+            var episode = new Episode
+            {
+                AdmissionDate = new DateTime(2016, 1, 2),
+                Diagnosis = "Fractured jaw",
+                DischargeDate = new DateTime(2016, 1, 3),
+                PatientId = 2,
+                EpisodeId = 101
+            };
+            _patientContext.Episodes.Add(episode);
+
             var httpResponseException = Assert.Throws<HttpResponseException>(() =>
-                _controller.Get(63));
+                _controller.Get(63)); // Shouldn't match PatientId = 2
 
             Assert.That(httpResponseException.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
         }
-
+        
         private PatientsController _GetController(IPatientContext patientContextToInject)
         {
             var container = WebApiApplication.ConfigureWindsor(GlobalConfiguration.Configuration);
