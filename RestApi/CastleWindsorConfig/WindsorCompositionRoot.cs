@@ -6,6 +6,7 @@ using System.Web.Http.Dispatcher;
 
 namespace RestApi.CastleWindsorConfig
 {
+    // Adapted from http://www.codeproject.com/Articles/710662/Simplest-Possible-ASP-NET-Web-API-Project-that-Imp
     public class WindsorCompositionRoot : IHttpControllerActivator
     {
         private readonly IWindsorContainer _container;

@@ -9,6 +9,7 @@ using Castle.MicroKernel.Lifestyle;
 
 namespace RestApi
 {
+    // Adapted from http://www.codeproject.com/Articles/710662/Simplest-Possible-ASP-NET-Web-API-Project-that-Imp
     public class CastleWindsorDependencyResolver : IDependencyResolver
     {
         private readonly IWindsorContainer _container;

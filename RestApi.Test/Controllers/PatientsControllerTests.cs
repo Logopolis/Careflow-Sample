@@ -102,6 +102,7 @@ namespace RestApi.Test.Controllers
             Assert.That(httpResponseException.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
         }
         
+        // TODO: Turn this into a re-usable CastleWindsorComponentResolver which retrieves any registered component
         private PatientsController _GetController(IPatientContext patientContextToInject)
         {
             var container = WebApiApplication.ConfigureWindsor(GlobalConfiguration.Configuration);
